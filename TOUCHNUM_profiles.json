@@ -1,0 +1,191 @@
+{
+  "activeProfile": 1,
+  "profiles": {
+    "1": [
+      {
+        "label": "7",
+        "type": "sendKeys",
+        "keys": "7"
+      },
+      {
+        "label": "8",
+        "type": "sendKeys",
+        "keys": "8"
+      },
+      {
+        "label": "9",
+        "type": "sendKeys",
+        "keys": "9"
+      },
+      {
+        "label": "Enter",
+        "type": "sendKeys",
+        "keys": "{ENTER}"
+      },
+      {
+        "label": "4",
+        "type": "sendKeys",
+        "keys": "4"
+      },
+      {
+        "label": "5",
+        "type": "sendKeys",
+        "keys": "5"
+      },
+      {
+        "label": "6",
+        "type": "sendKeys",
+        "keys": "6"
+      },
+      {
+        "label": "Hapus",
+        "type": "sendKeys",
+        "keys": "{BACKSPACE}"
+      },
+      {
+        "label": "1",
+        "type": "sendKeys",
+        "keys": "1"
+      },
+      {
+        "label": "2",
+        "type": "sendKeys",
+        "keys": "2"
+      },
+      {
+        "label": "3",
+        "type": "sendKeys",
+        "keys": "3"
+      },
+      {
+        "label": "0",
+        "type": "sendKeys",
+        "keys": "0"
+      }
+    ],
+    "2": [
+      {
+        "label": "copy",
+        "type": "sendKeys",
+        "keys": "^c"
+      },
+      {
+        "label": "paste",
+        "type": "sendKeys",
+        "keys": "^v"
+      },
+      {
+        "label": "/",
+        "type": "sendKeys",
+        "keys": "/"
+      },
+      {
+        "label": "Enter",
+        "type": "sendKeys",
+        "keys": "{ENTER}"
+      },
+      {
+        "label": "calculator",
+        "type": "launchApp",
+        "appPath": "C:\\Windows\\System32\\calc.exe"
+      },
+      {
+        "label": "5",
+        "type": "sendKeys",
+        "keys": "5"
+      },
+      {
+        "label": "6",
+        "type": "sendKeys",
+        "keys": "6"
+      },
+      {
+        "label": "Hapus",
+        "type": "sendKeys",
+        "keys": "{BACKSPACE}"
+      },
+      {
+        "label": "1",
+        "type": "sendKeys",
+        "keys": "1"
+      },
+      {
+        "label": "2",
+        "type": "sendKeys",
+        "keys": "2"
+      },
+      {
+        "label": "3",
+        "type": "sendKeys",
+        "keys": "3"
+      },
+      {
+        "label": "0",
+        "type": "sendKeys",
+        "keys": "0"
+      }
+    ],
+    "3": [
+      {
+        "label": "7",
+        "type": "sendKeys",
+        "keys": "7"
+      },
+      {
+        "label": "8",
+        "type": "sendKeys",
+        "keys": "8"
+      },
+      {
+        "label": "9",
+        "type": "sendKeys",
+        "keys": "9"
+      },
+      {
+        "label": "Enter",
+        "type": "sendKeys",
+        "keys": "{ENTER}"
+      },
+      {
+        "label": "4",
+        "type": "sendKeys",
+        "keys": "4"
+      },
+      {
+        "label": "5",
+        "type": "sendKeys",
+        "keys": "5"
+      },
+      {
+        "label": "6",
+        "type": "sendKeys",
+        "keys": "6"
+      },
+      {
+        "label": "Hapus",
+        "type": "sendKeys",
+        "keys": "{BACKSPACE}"
+      },
+      {
+        "label": "1",
+        "type": "sendKeys",
+        "keys": "1"
+      },
+      {
+        "label": "2",
+        "type": "sendKeys",
+        "keys": "2"
+      },
+      {
+        "label": "3",
+        "type": "sendKeys",
+        "keys": "3"
+      },
+      {
+        "label": "0",
+        "type": "sendKeys",
+        "keys": "0"
+      }
+    ]
+  }
+}

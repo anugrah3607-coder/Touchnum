@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>TOUCHNUM</title>
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+
+  <style>
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: auto;                 
+      -ms-overflow-style: none;     
+      scrollbar-width: none;          
+    }
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;                 
+    }
+
+    :root {
+      color-scheme: dark;
+      --bg: #050509;
+      --card: #14141a;
+      --card-soft: #1b1b22;
+      --accent: #5b5ef7;
+      --accent-soft: rgba(91,94,247,0.15);
+      --text: #f5f5ff;
+      --subtext: #b0b0c2;
+      --danger: #ff4d6a;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #141428 0, #050509 50%);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 32px auto 40px;
+      padding: 0 24px 40px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--subtext);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .memory-switch {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .memory-btn {
+      min-width: 110px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid #303047;
+      background: #15151f;
+      color: var(--subtext);
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .memory-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 0 0 1px var(--accent-soft), 0 10px 25px rgba(0,0,0,0.45);
+    }
+
+    .memory-info {
+      text-align: center;
+      font-size: 14px;
+      color: var(--subtext);
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      max-width: 620px;
+      margin: 0 auto 24px;
+    }
+
+    .grid-button {
+      border: none;
+      border-radius: 24px;
+      padding: 18px 8px;
+      font-size: 20px;
+      background: var(--card);
+      color: var(--text);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+    }
+
+    .grid-button:hover {
+      background: var(--card-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+    }
+
+    .grid-button:active {
+      transform: translateY(1px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.5);
+    }
+
+    .grid-button.is-empty {
+      color: var(--subtext);
+      opacity: 0.7;
+    }
+
+    .reset-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .reset-btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid #303047;
+      background: #15151f;
+      color: var(--subtext);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.15s ease;
+    }
+
+    .reset-btn:hover {
+      background: #202032;
+      color: #fff;
+      border-color: #3b3b60;
+    }
+
+    .last-row {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 14px;
+      color: var(--subtext);
+    }
+
+    .last-label {
+      margin-bottom: 4px;
+    }
+
+    .last-detail {
+      font-size: 13px;
+    }
+
+    .help-text {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--subtext);
+      line-height: 1.6;
+    }
+
+    .dialog-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .dialog-backdrop.show {
+      display: flex;
+    }
+
+    .dialog {
+      background: #11111a;
+      border-radius: 18px;
+      padding: 18px 20px 16px;
+      width: 360px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.7);
+    }
+
+    .dialog h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .dialog p {
+      margin: 0 0 10px;
+      font-size: 13px;
+      color: var(--subtext);
+    }
+
+    .dlg-field {
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .dlg-field label {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .dlg-field input,
+    .dlg-field select {
+      width: 100%;
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #2c2c3d;
+      background: #161622;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+
+    .dlg-field input:focus,
+    .dlg-field select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent-soft);
+    }
+
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn-small {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #303047;
+      font-size: 13px;
+      cursor: pointer;
+      background: #15151f;
+      color: var(--subtext);
+      transition: all 0.15s ease;
+    }
+
+    .btn-small.primary {
+      background: var(--accent);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .btn-small:hover {
+      filter: brightness(1.1);
+    }
+
+    .btn-small.primary:hover {
+      box-shadow: 0 0 0 1px var(--accent-soft), 0 8px 18px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>TOUCHNUM</h1>
+    <div class="subtitle">
+      Aktifkan TOUCHNUM dengan ctrl+alt+esc.
+    </div>
+
+    <div class="memory-switch">
+      <button class="memory-btn" data-memory="1">Memori 1</button>
+      <button class="memory-btn" data-memory="2">Memori 2</button>
+      <button class="memory-btn" data-memory="3">Memori 3</button>
+    </div>
+    <div class="memory-info">Memori aktif: <span id="active-memory-text">1</span></div>
+
+    <div class="grid" id="button-grid">
+      <!-- 12 tombol akan diisi dari renderer.js -->
+    </div>
+
+    <div class="reset-row">
+      <button id="reset-profile-btn" class="reset-btn">Reset profil memori aktif</button>
+    </div>
+
+    <div class="last-row">
+      <div class="last-label">Terakhir: <span id="last-action-label">-</span></div>
+      <div class="last-detail" id="last-action-detail"></div>
+    </div>
+
+    <div class="help-text">
+      • Sentuhan pada touchpad akan langsung mengirim aksi ke Windows.<br/>
+      • Klik tombol UI untuk mengganti label dan aksinya (SendKeys atau LaunchApp).<br/>
+      • Contoh SendKeys: <code>7</code>, <code>{ENTER}</code>, <code>{BACKSPACE}</code>, <code>^c</code> (Ctrl+C), <code>^v</code>, dll.<br/>
+      • Contoh LaunchApp: menuliskan alamat aplikasi di file explorer <code>{C:\Windows\System32\(nama aplikasi).exe}</code>
+
+    </div>
+  </div>
+
+  <div id="edit-backdrop" class="dialog-backdrop">
+    <div class="dialog">
+      <h3>Edit tombol</h3>
+      <p id="edit-position-text"></p>
+
+      <div class="dlg-field">
+        <label for="edit-label-input">Label (teks di UI)</label>
+        <input id="edit-label-input" type="text" />
+      </div>
+
+      <div class="dlg-field">
+        <label for="edit-type-select">Jenis aksi</label>
+        <select id="edit-type-select">
+          <option value="sendKeys">SendKeys – kirim tombol ke Windows</option>
+          <option value="launchApp">LaunchApp – jalankan aplikasi</option>
+        </select>
+      </div>
+
+      <div class="dlg-field">
+        <label for="edit-value-input" id="edit-value-label">SendKeys / path aplikasi</label>
+        <input id="edit-value-input" type="text" placeholder="Contoh: 7 atau {ENTER} atau {BACKSPACE} atau C:\Program Files\App\app.exe" />
+      </div>
+
+      <div class="dialog-actions">
+        <button id="edit-cancel-btn" class="btn-small">Batal</button>
+        <button id="edit-save-btn" class="btn-small primary">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./renderer.js"></script>
+</body>
+</html>

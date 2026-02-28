@@ -1,0 +1,45 @@
+{
+  "name": "proyek-lomopad",
+  "version": "1.0.0",
+  "description": "LOMOPAD - Touchpad to Numpad (Electron + Engine EXE)",
+  "main": "main.js",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.lomopad.app",
+    "productName": "LOMOPAD",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**",
+      "!**/*.log"
+    ],
+    "extraResources": [
+      {
+        "from": "engine",
+        "to": "engine"
+      }
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
