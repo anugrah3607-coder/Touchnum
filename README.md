@@ -1,4 +1,4 @@
-maaf installe gk saya kirim soale gk bisa kirim lebih 25mb
+maaf installer gk saya kirim soale gk bisa kirim lebih 25mb
 
 TOUCHNUM adalah aplikasi desktop (Electron/Node.js) untuk mengubah fungsi touchpad menjadi numpad/shortcut
 
